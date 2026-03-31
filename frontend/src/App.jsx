@@ -16,16 +16,18 @@ const PublicRoute = ({ children }) => {
 };
 
 function App() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isBootstrapping } = useAuth();
 
-  if (!isReady) {
+  if (isBootstrapping) {
     return (
-      <div className="min-h-screen grid place-items-center text-slate-600">Loading…</div>
+      <div className="app-shell grid place-items-center">
+        <div className="text-xl font-medium text-main">Loading...</div>
+      </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="app-shell">
       <Navbar />
       <Routes>
         <Route
